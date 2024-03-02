@@ -116,10 +116,12 @@ class TplinkBaseRouter(AbstractRouter):
         status.guest_clients_total = len(data.get('access_devices_wireless_guest', []))
         status.guest_2g_enable = data.get('guest_2g_enable') == 'on'
         status.guest_5g_enable = data.get('guest_5g_enable') == 'on'
+        status.guest_6g_enable = data.get('guest_6g_enable') == 'on'
         status.iot_2g_enable = data.get('iot_2g_enable') == 'on' if data.get('iot_2g_enable') is not None else None
         status.iot_5g_enable = data.get('iot_5g_enable') == 'on' if data.get('iot_5g_enable') is not None else None
         status.wifi_2g_enable = data.get('wireless_2g_enable') == 'on'
         status.wifi_5g_enable = data.get('wireless_5g_enable') == 'on'
+        status.wifi_6g_enable = data.get('wireless_6g_enable') == 'on'
 
         devices = {}
 
@@ -429,14 +431,18 @@ class TPLinkMRClient(AbstractRouter):
     LAN = 0
     WIFI_2G = 1
     WIFI_5G = 3
+    WIFI_6G = 5
     WIFI_GUEST_2G = 2
     WIFI_GUEST_5G = 4
+    WIFI_GUEST_6G = 6
 
     CLIENT_TYPES = {
         WIFI_2G: Wifi.WIFI_2G,
         WIFI_5G: Wifi.WIFI_5G,
+        WIFI_6G: Wifi.WIFI_6G,
         WIFI_GUEST_2G: Wifi.WIFI_GUEST_2G,
         WIFI_GUEST_5G: Wifi.WIFI_GUEST_5G,
+        WIFI_GUEST_6G: Wifi.WIFI_GUEST_6G,
     }
 
     WIFI_SET = {
